@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const weatherData = document.getElementById('weatherData');
   const weatherRefreshBtn = document.getElementById('weatherRefreshBtn');
 
+  // Helper function to get API base URL
+  function getApiUrl() {
+    // In production, use the deployed API URL
+    const isProd = window.location.hostname !== 'localhost';
+    return isProd ? 'https://cmsc335-finale.vercel.app/' : '';
+  }
+
   // Load books and weather on page load
   fetchBooks();
   fetchWeather();
@@ -41,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       year: parseInt(year)
     };
 
-    fetch('/api/books', {
+    fetch(`${getApiUrl()}/api/books`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (query) {
       apiResults.innerHTML = '<p class="loading">Searching for books...</p>';
       
-      fetch(`/api/external/books?q=${encodeURIComponent(query)}`)
+      fetch(`${getApiUrl()}/api/external/books?q=${encodeURIComponent(query)}`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -102,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function fetchBooks() {
     booksList.innerHTML = '<p class="loading">Loading your collection...</p>';
     
-    fetch('/api/books')
+    fetch(`${getApiUrl()}/api/books`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -148,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function getWeatherData(lat, lon) {
     // Build URL with coordinates if available
-    let url = '/api/external/weather';
+    let url = `${getApiUrl()}/api/external/weather`;
     if (lat && lon) {
       url += `?lat=${lat}&lon=${lon}`;
     }
@@ -226,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function deleteBook(bookId) {
-    fetch(`/api/books/${bookId}`, { method: "DELETE" })
+    fetch(`${getApiUrl()}/api/books/${bookId}`, { method: "DELETE" })
       .then(response => response.json())
       .then(() => {
         fetchBooks();
@@ -273,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
           coverUrl: event.target.getAttribute("data-coverUrl")
         };
         // Save to db
-        fetch('/api/books', {
+        fetch(`${getApiUrl()}/api/books`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(bookData)
@@ -319,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 document.getElementById('clearCollectionBtn').addEventListener('click', function() {
     if (confirm('Are you sure you want to clear your entire collection?')) {
-      fetch('/api/books', { method: 'DELETE' })
+      fetch(`${getApiUrl()}/api/books`, { method: 'DELETE' })
         .then(response => {
           if (!response.ok) throw new Error('Failed to clear collection');
           return response.json();
