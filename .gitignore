@@ -1,0 +1,11 @@
+# Ignore environment variables
+.env
+
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore Claude.md file
+CLAUDE.md

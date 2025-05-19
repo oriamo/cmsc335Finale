@@ -1,0 +1,27 @@
+{
+  "name": "finale",
+  "version": "1.0.0",
+  "description": "A book collection app with Express and MongoDB",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Adedapo",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "mongoose": "^8.14.3"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

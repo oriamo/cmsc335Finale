@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Collection App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>My Book Collection</h1>
+      <p>Track your favorite books and discover new ones</p>
+    </header>
+
+    <main>
+      <section class="form-section">
+        <h2>Add a New Book</h2>
+        <form id="bookForm">
+          <div class="form-group">
+            <label for="title">Book Title</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required>
+          </div>
+          <div class="form-group">
+            <label for="year">Publication Year</label>
+            <input type="number" id="year" name="year" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Book</button>
+        </form>
+      </section>
+
+      <section class="collection-section">
+        <h2>My Collection</h2>
+        <button id="clearCollectionBtn" class="btn btn-danger">Clear Collection</button>
+        <div id="booksList" class="books-grid">
+          <!-- Books will be displayed here -->
+          <p class="loading">Loading your collection...</p>
+        </div>
+      </section>
+
+      <section class="search-section">
+        <h2>Find New Books</h2>
+        <div class="search-container">
+          <input type="text" id="searchQuery" placeholder="Search for books...">
+          <button id="searchBtn" class="btn btn-secondary">Search</button>
+        </div>
+        <div class="weather-card">
+          <div class="weather-icon">
+            <i class="fas fa-cloud-sun"></i>
+          </div>
+          <div class="weather-content">
+            <div class="weather-header">
+              <h3>Today's Reading Weather</h3>
+              <button id="weatherRefreshBtn" class="btn-icon" title="Refresh weather"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            <p class="weather-data"><span id="weatherData">Loading...</span></p>
+            <p class="weather-message">Perfect reading weather!</p>
+          </div>
+        </div>
+        <div id="apiResults" class="books-grid">
+          <!-- API results will be displayed here -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Book Collection App - CMSC335 Final Project</p>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
