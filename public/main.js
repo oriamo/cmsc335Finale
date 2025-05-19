@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function getApiUrl() {
     // In production, use the deployed API URL
     const isProd = window.location.hostname !== 'localhost';
-    return isProd ? 'https://cmsc335-finale.vercel.app/' : '';
+    return isProd ? 'https://cmsc335finale.onrender.com' : '';
   }
 
   // Load books and weather on page load

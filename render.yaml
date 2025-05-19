@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: book-collection-app
+    env: node
+    buildCommand: npm install
+    startCommand: node server/app.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: NODE_ENV
+        value: production
